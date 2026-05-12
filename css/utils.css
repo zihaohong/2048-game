@@ -1,0 +1,204 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 100%;
+  overflow: hidden;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  z-index: 1000;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.locale-select {
+  padding: 5px 10px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.help-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.help-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 300px;
+  display: none;
+  z-index: 1001;
+}
+
+.help-dropdown.show { display: block; }
+
+.help-dropdown h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #66BB6A;
+}
+
+.help-dropdown p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+main {
+  padding-top: 50px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  padding: 0 15px;
+}
+
+.score-board {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.score-item {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-label {
+  font-size: clamp(12px, 2.5vw, 14px);
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+}
+
+.score-value {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: bold;
+  color: white;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  background: rgba(187, 173, 160, 0.8);
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.cell {
+  background: rgba(238, 228, 218, 0.9);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(20px, 6vw, 36px);
+  font-weight: bold;
+  color: #776e65;
+  transition: transform 0.15s ease-in-out;
+}
+
+.cell[data-value="2"] { background: #eee4da; }
+.cell[data-value="4"] { background: #ede0c8; }
+.cell[data-value="8"] { background: #f2b179; color: white; }
+.cell[data-value="16"] { background: #f59563; color: white; }
+.cell[data-value="32"] { background: #f67c5f; color: white; }
+.cell[data-value="64"] { background: #f65e3b; color: white; }
+.cell[data-value="128"] { background: #edcf72; color: white; font-size: clamp(18px, 5vw, 32px); }
+.cell[data-value="256"] { background: #edcc61; color: white; font-size: clamp(18px, 5vw, 32px); }
+.cell[data-value="512"] { background: #edc850; color: white; font-size: clamp(18px, 5vw, 32px); }
+.cell[data-value="1024"] { background: #edc53f; color: white; font-size: clamp(16px, 4.5vw, 28px); }
+.cell[data-value="2048"] { background: #edc22e; color: white; font-size: clamp(16px, 4.5vw, 28px); }
+
+.cell.new { animation: appear 0.2s ease-in-out; }
+.cell.merged { animation: pop 0.2s ease-in-out; }
+
+@keyframes appear {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(238, 228, 218, 0.9);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.game-over.show { display: flex; }
+
+.game-over h2 {
+  font-size: clamp(24px, 6vw, 36px);
+  color: #776e65;
+  margin-bottom: 10px;
+}
+
+.game-over p {
+  font-size: clamp(14px, 3vw, 18px);
+  color: #776e65;
+}
