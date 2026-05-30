@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>2048</title>
 <link rel="stylesheet" href="css/utils.css">
 </head>
 <body>
 <header>
   <div class="header-left">
+    <button class="games-btn" id="gamesBtn">Games</button>
+    <div class="games-dropdown" id="gamesDropdown"></div>
+  </div>
+  <div class="header-right">
     <select class="locale-select" id="localeSelect">
       <option value="en">English</option>
       <option value="zh">中文</option>
     </select>
-  </div>
-  <div class="header-right">
     <button class="help-btn" id="helpBtn">?</button>
     <div class="help-dropdown" id="helpDropdown">
       <h3 id="helpTitle">How to Play</h3>
@@ -26,18 +28,27 @@
   <div class="game-container">
     <div class="score-board">
       <div class="score-item">
-        <span class="score-label">Score</span>
+        <span class="score-label" id="scoreLabel">Score</span>
         <span class="score-value" id="score">0</span>
       </div>
       <div class="score-item">
-        <span class="score-label">Best</span>
+        <span class="score-label" id="bestLabel">Best</span>
         <span class="score-value" id="bestScore">0</span>
       </div>
     </div>
-    <div class="board" id="board"></div>
+    <div class="board" id="board">
+      <div class="grid-container" id="gridContainer"></div>
+      <div class="tile-container" id="tileContainer"></div>
+    </div>
     <div class="game-over" id="gameOver">
-      <h2>Game Over!</h2>
-      <p>Tap to restart</p>
+      <h2 id="gameOverTitle">Game Over!</h2>
+      <p id="finalScore">Score: 0</p>
+      <p id="tryAgain">Tap to restart</p>
+    </div>
+    <div class="win-screen" id="winScreen">
+      <h2 id="winTitle">You Win!</h2>
+      <p id="winScore">Score: 0</p>
+      <p id="continueText">Tap to continue</p>
     </div>
   </div>
 </main>
