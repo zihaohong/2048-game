@@ -28,6 +28,55 @@ header {
   position: relative;
 }
 
+.games-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #776E65;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.games-btn:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.games-dropdown {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background: rgba(238, 228, 218, 0.95);
+  color: #776E65;
+  padding: 10px;
+  border-radius: 8px;
+  min-width: 150px;
+  display: none;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.games-dropdown.show { display: block; }
+
+.games-dropdown a {
+  display: block;
+  padding: 8px 12px;
+  color: #776E65;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.games-dropdown a:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.games-dropdown a.current {
+  background: rgba(187, 173, 160, 0.5);
+  font-weight: bold;
+}
+
 .locale-select {
   padding: 5px 10px;
   font-size: 14px;
